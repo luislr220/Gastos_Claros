@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const { validarGasto } = require("../middlewares/validarGasto");
+const {
+  validarGasto,
+  validarGastoActualizado,
+} = require("../middlewares/validarGasto");
 const gastoController = require("../controllers/gastoController");
 
 router.post(
@@ -13,5 +16,11 @@ router.post(
 router.get("/listar-gastos", gastoController.listarGastosController);
 
 router.delete("/eliminar-gasto/:id", gastoController.eliminarGastoController);
+
+router.patch(
+  "/actualizar-gasto/:id",
+  validarGastoActualizado,
+  gastoController.actualizarGastoController,
+);
 
 module.exports = router;

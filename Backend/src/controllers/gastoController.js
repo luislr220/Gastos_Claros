@@ -47,8 +47,24 @@ const eliminarGastoController = (req, res) => {
   }
 };
 
+const actualizarGastoController = (req, res) => {
+  const id = req.params.id;
+  const data = req.body;
+
+  const response = GastoService.actualizarGasto(id, data);
+
+  if (response === false) {
+    return res
+      .status(400)
+      .json({ error: "No se encontro el gasto a actualizar." });
+  }
+
+  res.status(200).json({ mensaje: "Gasto actualizado correctamente." });
+};
+
 module.exports = {
   crearGastoController,
   listarGastosController,
   eliminarGastoController,
+  actualizarGastoController,
 };

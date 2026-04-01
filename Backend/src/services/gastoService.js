@@ -53,7 +53,25 @@ const listarGastos = () => {
   return Gastos;
 };
 
-const actualizarGasto = (id, nombre, monto) => {};
+const actualizarGasto = (id, data) => {
+  const gastoIndex = Gastos.findIndex((gasto) => gasto.id === id);
+
+  //datos = {nombre, monto} req.body;
+
+  if (gastoIndex === -1) {
+    return false;
+  }
+
+  const gastoActualizado = {
+    ...Gastos[gastoIndex],
+    ...data,
+    fecha: new Date().toISOString(),
+  };
+
+  Gastos[gastoIndex] = gastoActualizado;
+
+  return gastoActualizado;
+};
 
 const eliminarGasto = (id) => {
   const tamInicial = Gastos.length;
@@ -70,4 +88,9 @@ const eliminarGasto = (id) => {
   return true;
 };
 
-module.exports = { registrarGasto, listarGastos, eliminarGasto };
+module.exports = {
+  registrarGasto,
+  listarGastos,
+  eliminarGasto,
+  actualizarGasto,
+};
