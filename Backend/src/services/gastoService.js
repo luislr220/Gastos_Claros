@@ -12,11 +12,10 @@ const registrarGasto = (nombre, monto) => {
   const id = uuidv4();
   const fecha = new Date().toISOString();
 
-  const nombreFormateado = nombreYCategoria(nombre);
-  const nombreLimpio = nombreFormateado.nombre;
-  const categoria = nombreFormateado.categoria;
-  console.log("Nombre limpio: ", nombreLimpio, "Categoria: ", categoria);
-  const nuevoGasto = new Gasto(id, nombreLimpio, monto, categoria, fecha);
+  const nombreCategoria = nombreYCategoria(nombre);
+  const categoria = nombreCategoria.categoria;
+  console.log("Nombre y categoria: ", nombre, "Categoria: ", categoria);
+  const nuevoGasto = new Gasto(id, nombre, monto, categoria, fecha);
 
   Gastos.push(nuevoGasto);
 
@@ -50,6 +49,9 @@ const nombreYCategoria = (nombre) => {
 };
 
 const listarGastos = () => {
+  if (Gastos.length === 0) {
+    return null;
+  }
   return Gastos;
 };
 
@@ -88,9 +90,25 @@ const eliminarGasto = (id) => {
   return true;
 };
 
+const totalGastado = () => {
+  const montos = Gastos.map((gasto) => gasto.monto);
+  let total = 0;
+
+  if (montos.length === 0) {
+    return total;
+  }
+
+  for (let m of montos) {
+    total += m;
+  }
+  console.log(montos);
+  return total;
+};
+
 module.exports = {
   registrarGasto,
   listarGastos,
   eliminarGasto,
   actualizarGasto,
+  totalGastado,
 };

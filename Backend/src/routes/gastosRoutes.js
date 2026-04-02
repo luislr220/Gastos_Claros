@@ -23,4 +23,6 @@ router.patch(
   gastoController.actualizarGastoController,
 );
 
+router.get("/total-gastado", gastoController.totalGastadoController);
+
 module.exports = router;
