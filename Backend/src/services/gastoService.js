@@ -105,10 +105,32 @@ const totalGastado = () => {
   return total;
 };
 
+const gastoPorCategoria = () => {
+  const categorias = {};
+
+  for (let i of Gastos) {
+    const categoria = i.categoria;
+    const monto = i.monto;
+
+    if (categorias[categoria]) {
+      categorias[categoria] += monto;
+    } else {
+      categorias[categoria] = monto;
+    }
+  }
+
+  if (Object.keys(categorias).length === 0) {
+    return null;
+  }
+
+  return categorias;
+};
+
 module.exports = {
   registrarGasto,
   listarGastos,
   eliminarGasto,
   actualizarGasto,
   totalGastado,
+  gastoPorCategoria,
 };

@@ -88,10 +88,33 @@ const totalGastadoController = (req, res) => {
   }
 };
 
+const gastoPorCategoriaController = (req, res) => {
+  try {
+    const response = GastoService.gastoPorCategoria();
+
+    if (response === null) {
+      return res.status(200).json({
+        mensaje: "No hay gastos registrados.",
+      });
+    }
+
+    return res.status(200).json({
+      mensaje: "Gastos por categoria obtenidos correctamente.",
+      data: response,
+    });
+  } catch (error) {
+    console.log("Gasto por categoria Controller: ", error);
+    return res
+      .status(500)
+      .json({ error: "Ocurrio un error al obtener los gastos por categoria." });
+  }
+};
+
 module.exports = {
   crearGastoController,
   listarGastosController,
   eliminarGastoController,
   actualizarGastoController,
   totalGastadoController,
+  gastoPorCategoriaController,
 };
