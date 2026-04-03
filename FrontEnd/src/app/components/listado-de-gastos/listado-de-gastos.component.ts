@@ -47,10 +47,23 @@ export class ListadoDeGastosComponent implements OnInit {
     this.gastosService.getTotalGasto().subscribe({
       next: (response) => {
         console.log(response);
-        this.totalGastadoGeneral = response.data;
+        this.totalGastadoGeneral = response.data.toFixed(2);
       },
       error: (e) => {
         console.error('Error al obtener el total gastado: ', e);
+      },
+    });
+  }
+
+  eliminarGasto(id: string) {
+    console.log('Se ha eliminado el gasto con ID: ', id);
+    this.gastosService.deleteGasto(id).subscribe({
+      next: (response) => {
+        alert(response.mensaje);
+        this.gastosService.actualizarListas();
+      },
+      error: (e) => {
+        alert(e.error);
       },
     });
   }

@@ -37,6 +37,10 @@ export class GastosService {
     );
   }
 
+  deleteGasto(id: string) {
+    return this.http.delete<any>(`${this.API_URL}/eliminar-gasto/${id}`);
+  }
+
   get RefrescarListas() {
     return this._refrescarListas;
   }

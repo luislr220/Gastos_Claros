@@ -11,6 +11,8 @@
       <p>${{ gasto.monto }} MXN</p>
       <p>{{ capitaizar(gasto.categoria) }}</p>
       <p>{{ gasto.fecha | date: "dd/MM/yyyy" }}</p>
+
+      <button (click)="eliminarGasto(gasto.id)">Eliminar</button>
     </div>
   }
 </div>

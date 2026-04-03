@@ -15,6 +15,10 @@ export class GastoPorCategoriaComponent implements OnInit {
 
   ngOnInit(): void {
     this.gastoPorCategoria();
+
+    this.gastoService.RefrescarListas.subscribe(() => {
+      this.gastoPorCategoria();
+    });
   }
 
   gastoPorCategoria() {
@@ -31,5 +35,10 @@ export class GastoPorCategoriaComponent implements OnInit {
 
   obtenerLlaves(objecto: GastoPorCategoria) {
     return Object.keys(objecto);
+  }
+
+  capitaizar(texto: string) {
+    if (!texto) return '';
+    return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
   }
 }
