@@ -11,15 +11,18 @@ import { DatePipe } from '@angular/common';
 })
 export class ListadoDeGastosComponent implements OnInit {
   listarGastos: Gasto[] = [];
+  totalGastadoGeneral: number = 0;
 
   constructor(private readonly gastosService: GastosService) {}
 
   ngOnInit() {
     console.log('COMPONENTE DE LISTADO DE GASTOS');
     this.cargarGastos();
+    this.totalGastado();
 
     this.gastosService.RefrescarListas.subscribe(() => {
       this.cargarGastos();
+      this.totalGastado();
     });
   }
 
@@ -38,5 +41,17 @@ export class ListadoDeGastosComponent implements OnInit {
   capitaizar(texto: string) {
     if (!texto) return '';
     return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+  }
+
+  totalGastado() {
+    this.gastosService.getTotalGasto().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.totalGastadoGeneral = response.data;
+      },
+      error: (e) => {
+        console.error('Error al obtener el total gastado: ', e);
+      },
+    });
   }
 }

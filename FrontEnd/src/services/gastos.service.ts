@@ -11,7 +11,7 @@ export class GastosService {
 
   gastos!: Gasto[];
 
-  private _refrescarListas = new Subject<void>();
+  private readonly _refrescarListas = new Subject<void>();
 
   constructor(private readonly http: HttpClient) {}
 
@@ -24,6 +24,10 @@ export class GastosService {
       `${this.API_URL}/registrar-gasto`,
       nuevoGasto,
     );
+  }
+
+  getTotalGasto() {
+    return this.http.get<any>(`${this.API_URL}/total-gastado`);
   }
 
   get RefrescarListas() {

@@ -1,10 +1,14 @@
 <h2>Gastos</h2>
 
+<div>
+  <p>Total gastado: ${{ totalGastadoGeneral }} MXN</p>
+</div>
+
 <div class="card-gastos-container">
   @for (gasto of listarGastos; track gasto.id) {
     <div class="gasto-card">
       <p class="gasto-card-titulo">{{ gasto.nombre }}</p>
-      <p>{{ gasto.monto }}</p>
+      <p>${{ gasto.monto }} MXN</p>
       <p>{{ capitaizar(gasto.categoria) }}</p>
       <p>{{ gasto.fecha | date: "dd/MM/yyyy" }}</p>
     </div>
