@@ -5,3 +5,8 @@ export interface Gasto {
   categoria: string;
   fecha: Date;
 }
+
+export interface GastoRegistro {
+  nombre: string;
+  monto: number;
+}

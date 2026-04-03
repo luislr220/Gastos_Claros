@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Gasto } from '../models/Gasto';
+import { Gasto, GastoRegistro } from '../models/Gasto';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,5 +15,12 @@ export class GastosService {
 
   getGastos() {
     return this.http.get<Gasto[]>(`${this.API_URL}/listar-gastos`);
+  }
+
+  postGasto(nuevoGasto: GastoRegistro): Observable<GastoRegistro> {
+    return this.http.post<GastoRegistro>(
+      `${this.API_URL}/registrar-gasto`,
+      nuevoGasto,
+    );
   }
 }

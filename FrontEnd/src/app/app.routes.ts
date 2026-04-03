@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { ListadoDeGastosComponent } from './components/listado-de-gastos/listado-de-gastos.component';
+import { HomeComponent } from './components/home/home.component';
 
-export const routes: Routes = [
-  { path: '', component: ListadoDeGastosComponent },
-];
+export const routes: Routes = [{ path: '', component: HomeComponent }];
