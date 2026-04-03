@@ -1,0 +1,21 @@
+.card-gastos-container {
+  display: flex;
+  margin: 0 1rem 1rem 1rem;
+  text-align: left;
+}
+
+.gasto-card {
+  border: 1px solid #2e2e2e;
+  margin: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #d8d8d8;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.gasto-card-titulo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: 1px solid #2e2e2e;
+}

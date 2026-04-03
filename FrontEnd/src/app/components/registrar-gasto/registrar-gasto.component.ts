@@ -31,10 +31,14 @@ export class RegistrarGastoComponent {
       this.gastosService.postGasto(data).subscribe({
         next: (response: any) => {
           console.log(response);
+          alert(response.mensaje);
+
+          this.gastosService.actualizarListas();
           this.registroGasto.reset();
         },
         error: (err: any) => {
-          console.log(err);
+          console.log(err.error.error);
+          alert(err.error.error);
         },
       });
     }

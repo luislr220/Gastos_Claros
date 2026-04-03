@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Gasto } from '../../../models/Gasto';
 import { GastosService } from '../../../services/gastos.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-listado-de-gastos',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './listado-de-gastos.component.html',
   styleUrl: './listado-de-gastos.component.css',
 })
@@ -16,17 +17,26 @@ export class ListadoDeGastosComponent implements OnInit {
   ngOnInit() {
     console.log('COMPONENTE DE LISTADO DE GASTOS');
     this.cargarGastos();
+
+    this.gastosService.RefrescarListas.subscribe(() => {
+      this.cargarGastos();
+    });
   }
 
   cargarGastos() {
     this.gastosService.getGastos().subscribe({
-      next: (data) => {
-        this.listarGastos = data;
-        console.log('Gastos listados: ', this.listarGastos);
+      next: (data: any) => {
+        this.listarGastos = data.data;
+        console.log('Gastos listados: ', data.mensaje);
       },
-      error: (error) => {
+      error: (error: any) => {
         console.log('Ocurrio un error: ', error);
       },
     });
+  }
+
+  capitaizar(texto: string) {
+    if (!texto) return '';
+    return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
   }
 }
