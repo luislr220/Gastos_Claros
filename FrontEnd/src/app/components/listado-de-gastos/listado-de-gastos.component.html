@@ -13,11 +13,12 @@
       <p>{{ gasto.fecha | date: "dd/MM/yyyy" }}</p>
 
       <button (click)="abrirModalEliminar(gasto.id)">Eliminar</button>
-      <button (click)="abrirModal()">Actualizar</button>
+      <button (click)="abrirModal(gasto)">Actualizar</button>
     </div>
   }
 </div>
 
+<!-- MODAL PARA ELIMINAR -->
 @if (modalAbiertoEliminar) {
   <div class="container-modal">
     <div class="modal-content">
@@ -29,14 +30,23 @@
   </div>
 }
 
-@if (modalAbierto) {
+<!-- MODAL PARA ACTUALIZAR -->
+@if (modalAbierto && gastoAEditar) {
   <div class="container-modal">
     <div class="modal-content">
       <button (click)="cerrarModal()">X</button>
       <p>Acualizando</p>
-      <input type="text" placeholder="Gasto" />
-      <input type="number" placeholder="Monto" />
-      <button>Confirmar</button>
+      <input
+        type="text"
+        placeholder="Gasto"
+        [(ngModel)]="gastoAEditar.nombre"
+      />
+      <input
+        type="number"
+        placeholder="Monto"
+        [(ngModel)]="gastoAEditar.monto"
+      />
+      <button (click)="confirmarActualizar(gastoAEditar.id)">Confirmar</button>
     </div>
   </div>
 }

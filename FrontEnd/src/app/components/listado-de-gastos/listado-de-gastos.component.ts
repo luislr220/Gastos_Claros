@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Gasto } from '../../../models/Gasto';
 import { GastosService } from '../../../services/gastos.service';
 import { DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listado-de-gastos',
-  imports: [DatePipe],
+  imports: [DatePipe, FormsModule],
   templateUrl: './listado-de-gastos.component.html',
   styleUrl: './listado-de-gastos.component.css',
 })
@@ -15,6 +16,8 @@ export class ListadoDeGastosComponent implements OnInit {
   modalAbierto: boolean = false;
   modalAbiertoEliminar: boolean = false;
   idAEliminar: string = '';
+  gastoAEditar: Gasto | any;
+  gastoOriginal: Gasto | any;
 
   constructor(private readonly gastosService: GastosService) {}
 
@@ -66,17 +69,52 @@ export class ListadoDeGastosComponent implements OnInit {
         this.gastosService.actualizarListas();
       },
       error: (e) => {
-        alert(e.error);
+        alert(e.error.error);
       },
     });
   }
 
-  abrirModal() {
+  actualizarGasto(id: string) {
+    const idGasto = id;
+    const cambios: any = {};
+
+    Object.keys(this.gastoAEditar).forEach((key) => {
+      if (this.gastoAEditar[key] !== this.gastoOriginal[key]) {
+        cambios[key] = this.gastoAEditar[key];
+      }
+    });
+
+    if (Object.keys(cambios).length === 0) {
+      alert('No hay cambios que guardar');
+      return;
+    }
+
+    this.gastosService.actualizarGasto(idGasto, cambios).subscribe({
+      next: (response) => {
+        alert(response.mensaje);
+        this.gastosService.actualizarListas();
+      },
+      error: (e) => {
+        alert(e.error.error);
+      },
+    });
+  }
+
+  /* LOGICA DE MODALES */
+
+  abrirModal(gastoEdit: Gasto) {
+    this.gastoAEditar = { ...gastoEdit };
+    this.gastoOriginal = { ...gastoEdit };
     this.modalAbierto = true;
   }
 
   cerrarModal() {
     this.modalAbierto = false;
+  }
+
+  confirmarActualizar(id: string) {
+    this.actualizarGasto(id);
+    this.cerrarModal();
   }
 
   abrirModalEliminar(id: string) {

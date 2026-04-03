@@ -41,6 +41,10 @@ export class GastosService {
     return this.http.delete<any>(`${this.API_URL}/eliminar-gasto/${id}`);
   }
 
+  actualizarGasto(id: string, data: { nombre?: string; monto?: number }) {
+    return this.http.patch<any>(`${this.API_URL}/actualizar-gasto/${id}`, data);
+  }
+
   get RefrescarListas() {
     return this._refrescarListas;
   }
