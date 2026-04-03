@@ -1,5 +1,7 @@
 <h2>Gasto Por Categoria</h2>
 
 @for (categoria of obtenerLlaves(gastoCategoria); track categoria) {
-  <p>{{ capitaizar(categoria) }} | {{ gastoCategoria[categoria] }}</p>
+  <p>
+    {{ capitaizar(categoria) }} | ${{ gastoCategoria[categoria].toFixed(2) }} MXN
+  </p>
 }
