@@ -10,3 +10,7 @@ export interface GastoRegistro {
   nombre: string;
   monto: number;
 }
+
+export interface GastoPorCategoria {
+  [categoria: string]: number;
+}

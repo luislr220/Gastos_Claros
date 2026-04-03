@@ -1,1 +1,5 @@
-<p>gasto-por-categoria works!</p>
+<h2>Gasto Por Categoria</h2>
+
+@for (categoria of obtenerLlaves(gastoCategoria); track categoria) {
+  <p>{{ categoria }} | {{ gastoCategoria[categoria] }}</p>
+}

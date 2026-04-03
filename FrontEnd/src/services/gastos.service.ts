@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Gasto, GastoRegistro } from '../models/Gasto';
+import { Gasto, GastoPorCategoria, GastoRegistro } from '../models/Gasto';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -10,6 +10,7 @@ export class GastosService {
   readonly API_URL = 'http://localhost:4000/api/gastos';
 
   gastos!: Gasto[];
+  gastoPorCategoria: GastoPorCategoria = {};
 
   private readonly _refrescarListas = new Subject<void>();
 
@@ -28,6 +29,12 @@ export class GastosService {
 
   getTotalGasto() {
     return this.http.get<any>(`${this.API_URL}/total-gastado`);
+  }
+
+  getGastoPorCategoria() {
+    return this.http.get<GastoPorCategoria>(
+      `${this.API_URL}/gasto-por-categoria`,
+    );
   }
 
   get RefrescarListas() {
