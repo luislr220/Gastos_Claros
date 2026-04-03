@@ -12,6 +12,9 @@ import { DatePipe } from '@angular/common';
 export class ListadoDeGastosComponent implements OnInit {
   listarGastos: Gasto[] = [];
   totalGastadoGeneral: number = 0;
+  modalAbierto: boolean = false;
+  modalAbiertoEliminar: boolean = false;
+  idAEliminar: string = '';
 
   constructor(private readonly gastosService: GastosService) {}
 
@@ -66,5 +69,28 @@ export class ListadoDeGastosComponent implements OnInit {
         alert(e.error);
       },
     });
+  }
+
+  abrirModal() {
+    this.modalAbierto = true;
+  }
+
+  cerrarModal() {
+    this.modalAbierto = false;
+  }
+
+  abrirModalEliminar(id: string) {
+    this.modalAbiertoEliminar = true;
+    this.idAEliminar = id;
+  }
+
+  cerrarModalEliminar() {
+    this.modalAbiertoEliminar = false;
+    this.idAEliminar = '';
+  }
+
+  confirmarEliminar() {
+    this.eliminarGasto(this.idAEliminar);
+    this.cerrarModalEliminar();
   }
 }

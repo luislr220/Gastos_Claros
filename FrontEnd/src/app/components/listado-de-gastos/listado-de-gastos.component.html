@@ -12,7 +12,31 @@
       <p>{{ capitaizar(gasto.categoria) }}</p>
       <p>{{ gasto.fecha | date: "dd/MM/yyyy" }}</p>
 
-      <button (click)="eliminarGasto(gasto.id)">Eliminar</button>
+      <button (click)="abrirModalEliminar(gasto.id)">Eliminar</button>
+      <button (click)="abrirModal()">Actualizar</button>
     </div>
   }
 </div>
+
+@if (modalAbiertoEliminar) {
+  <div class="container-modal">
+    <div class="modal-content">
+      <button (click)="cerrarModalEliminar()">X</button>
+      <p>¿Seguro que quieres eliminar este gasto?</p>
+      <p>Esta acción no se puede deshacer.</p>
+      <button (click)="confirmarEliminar()">Confirmar</button>
+    </div>
+  </div>
+}
+
+@if (modalAbierto) {
+  <div class="container-modal">
+    <div class="modal-content">
+      <button (click)="cerrarModal()">X</button>
+      <p>Acualizando</p>
+      <input type="text" placeholder="Gasto" />
+      <input type="number" placeholder="Monto" />
+      <button>Confirmar</button>
+    </div>
+  </div>
+}
