@@ -1,3 +1,4 @@
+/* ESTILOS DE LAS CARD */
 .card-gastos-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -18,6 +19,46 @@
   border-bottom: 1px solid #2e2e2e;
 }
 
+.btns-card {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-card-eliminar {
+  background-color: #c00000;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.btn-card-eliminar:hover {
+  background-color: #e50000;
+  transform: scale(1.1);
+}
+
+.btn-card-actualizar {
+  background-color: #dba723;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.btn-card-actualizar:hover {
+  background-color: #e3b540;
+  transform: scale(1.1);
+}
+
+/* ESTILOS DE LOS MODALES */
 .container-modal {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.43);

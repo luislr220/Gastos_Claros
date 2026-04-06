@@ -12,8 +12,17 @@
       <p>{{ capitaizar(gasto.categoria) }}</p>
       <p>{{ gasto.fecha | date: "dd/MM/yyyy" }}</p>
 
-      <button (click)="abrirModalEliminar(gasto.id)">Eliminar</button>
-      <button (click)="abrirModal(gasto)">Actualizar</button>
+      <div class="btns-card">
+        <button
+          (click)="abrirModalEliminar(gasto.id)"
+          class="btn-card-eliminar"
+        >
+          Eliminar
+        </button>
+        <button (click)="abrirModal(gasto)" class="btn-card-actualizar">
+          Actualizar
+        </button>
+      </div>
     </div>
   }
 </div>
@@ -25,7 +34,10 @@
       <button (click)="cerrarModalEliminar()" class="btn-cerrar">X</button>
       <p>¿Seguro que quieres eliminar este gasto?</p>
       <p>Esta acción no se puede deshacer.</p>
-      <button (click)="confirmarEliminar()" class="btn-confirmar btn-confirmar-eliminar">
+      <button
+        (click)="confirmarEliminar()"
+        class="btn-confirmar btn-confirmar-eliminar"
+      >
         Confirmar
       </button>
     </div>
