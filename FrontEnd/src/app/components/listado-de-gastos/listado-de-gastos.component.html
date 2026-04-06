@@ -8,7 +8,7 @@
   @for (gasto of listarGastos; track gasto.id) {
     <div class="gasto-card">
       <p class="gasto-card-titulo">{{ gasto.nombre }}</p>
-      <p>${{ gasto.monto }} MXN</p>
+      <p>${{ gasto.monto.toFixed(2) }} MXN</p>
       <p>{{ capitaizar(gasto.categoria) }}</p>
       <p>{{ gasto.fecha | date: "dd/MM/yyyy" }}</p>
 
@@ -22,10 +22,12 @@
 @if (modalAbiertoEliminar) {
   <div class="container-modal">
     <div class="modal-content">
-      <button (click)="cerrarModalEliminar()">X</button>
+      <button (click)="cerrarModalEliminar()" class="btn-cerrar">X</button>
       <p>¿Seguro que quieres eliminar este gasto?</p>
       <p>Esta acción no se puede deshacer.</p>
-      <button (click)="confirmarEliminar()">Confirmar</button>
+      <button (click)="confirmarEliminar()" class="btn-confirmar btn-confirmar-eliminar">
+        Confirmar
+      </button>
     </div>
   </div>
 }
@@ -34,19 +36,34 @@
 @if (modalAbierto && gastoAEditar) {
   <div class="container-modal">
     <div class="modal-content">
-      <button (click)="cerrarModal()">X</button>
-      <p>Acualizando</p>
-      <input
-        type="text"
-        placeholder="Gasto"
-        [(ngModel)]="gastoAEditar.nombre"
-      />
-      <input
-        type="number"
-        placeholder="Monto"
-        [(ngModel)]="gastoAEditar.monto"
-      />
-      <button (click)="confirmarActualizar(gastoAEditar.id)">Confirmar</button>
+      <button (click)="cerrarModal()" class="btn-cerrar">X</button>
+      <p>Actualizando</p>
+
+      <div class="form-group">
+        <label for="gasto-actualizar">Gasto</label>
+        <input
+          type="text"
+          placeholder="Gasto"
+          [(ngModel)]="gastoAEditar.nombre"
+          id="gasto-actualizar"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="monto-actualizar">Monto</label>
+        <input
+          type="number"
+          placeholder="Monto"
+          [(ngModel)]="gastoAEditar.monto"
+          id="monto-actualizar"
+        />
+      </div>
+      <button
+        (click)="confirmarActualizar(gastoAEditar.id)"
+        class="btn-confirmar"
+      >
+        Confirmar
+      </button>
     </div>
   </div>
 }

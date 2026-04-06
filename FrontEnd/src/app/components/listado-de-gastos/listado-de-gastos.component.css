@@ -22,13 +22,71 @@
 
 .container-modal {
   position: fixed;
-  background-color: #0000006e;
+  background-color: rgba(0, 0, 0, 0.43);
   text-align: center;
-  z-index: 1000;
-  top: 50%;
-  left: 50%;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
 }
 
 .modal-content {
+  background-color: rgb(224, 224, 224);
   border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 20px;
+  min-width: 300px;
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  position: relative;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.form-group input {
+  border: none;
+  border-bottom: 1px solid #4b4b4b;
+  width: 100%;
+  height: auto;
+  padding: 8px;
+  margin-right: 10px;
+  background: none;
+}
+
+.btn-cerrar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.btn-confirmar {
+  background-color: #3d9241;
+  border: 1px solid #3d9241;
+  border-radius: 15px;
+  width: 100%;
+  height: auto;
+  padding: 8px;
+  font-weight: 700;
+  color: white;
+}
+
+.btn-confirmar-eliminar {
+  background-color: #c00000;
+  color: white;
+  border: 1px solid #c00000;
 }
