@@ -1,17 +1,15 @@
 .card-gastos-container {
-  display: flex;
-  margin: 0 1rem 1rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   text-align: left;
 }
 
 .gasto-card {
   border: 1px solid #2e2e2e;
-  margin: 1rem;
   padding: 10px;
   border-radius: 10px;
   background-color: #d8d8d8;
-  box-sizing: border-box;
-  width: 100%;
 }
 
 .gasto-card-titulo {
@@ -89,4 +87,35 @@
   background-color: #c00000;
   color: white;
   border: 1px solid #c00000;
+}
+
+/* MEDIA QUERYS */
+
+/* Celular */
+@media (min-width: 340px) {
+  .card-gastos-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: left;
+  }
+}
+
+/* Tablet */
+@media (min-width: 760px) {
+  .card-gastos-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    text-align: left;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-gastos-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    text-align: left;
+  }
 }
