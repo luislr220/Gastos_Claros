@@ -7,10 +7,16 @@
 }
 
 .gasto-card {
-  border: 1px solid #2e2e2e;
+  border: none;
   padding: 10px;
   border-radius: 10px;
   background-color: #d8d8d8;
+  box-shadow: #000000 2px 3px 8px;
+  transition: transform 0.3s ease;
+}
+
+.gasto-card:hover {
+  transform: scale(1.01);
 }
 
 .gasto-card-titulo {
@@ -38,7 +44,7 @@
 
 .btn-card-eliminar:hover {
   background-color: #e50000;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .btn-card-actualizar {
@@ -55,7 +61,7 @@
 
 .btn-card-actualizar:hover {
   background-color: #e3b540;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* ESTILOS DE LOS MODALES */
