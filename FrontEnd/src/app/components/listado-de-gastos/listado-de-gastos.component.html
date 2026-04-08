@@ -28,7 +28,7 @@
 </div>
 
 <!-- MODAL PARA ELIMINAR -->
-@if (modalAbiertoEliminar) {
+@if (modalAbiertoEliminar()) {
   <div class="container-modal">
     <div class="modal-content">
       <button (click)="cerrarModalEliminar()" class="btn-cerrar">X</button>
@@ -45,7 +45,7 @@
 }
 
 <!-- MODAL PARA ACTUALIZAR -->
-@if (modalAbierto && gastoAEditar) {
+@if (modalAbierto() && gastoAEditar) {
   <div class="container-modal">
     <div class="modal-content">
       <button (click)="cerrarModal()" class="btn-cerrar">X</button>

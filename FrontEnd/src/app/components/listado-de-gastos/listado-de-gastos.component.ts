@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Gasto } from '../../../models/Gasto';
 import { GastosService } from '../../../services/gastos.service';
 import { DatePipe } from '@angular/common';
@@ -13,8 +13,8 @@ import { FormsModule } from '@angular/forms';
 export class ListadoDeGastosComponent implements OnInit {
   listarGastos: Gasto[] = [];
   totalGastadoGeneral: number = 0;
-  modalAbierto: boolean = false;
-  modalAbiertoEliminar: boolean = false;
+  modalAbierto = signal(false);
+  modalAbiertoEliminar = signal(false);
   idAEliminar: string = '';
   gastoAEditar: Gasto | any;
   gastoOriginal: Gasto | any;
@@ -105,11 +105,11 @@ export class ListadoDeGastosComponent implements OnInit {
   abrirModal(gastoEdit: Gasto) {
     this.gastoAEditar = { ...gastoEdit };
     this.gastoOriginal = { ...gastoEdit };
-    this.modalAbierto = true;
+    this.modalAbierto.update((_) => true);
   }
 
   cerrarModal() {
-    this.modalAbierto = false;
+    this.modalAbierto.update((_) => false);
   }
 
   confirmarActualizar(id: string) {
@@ -118,12 +118,12 @@ export class ListadoDeGastosComponent implements OnInit {
   }
 
   abrirModalEliminar(id: string) {
-    this.modalAbiertoEliminar = true;
+    this.modalAbiertoEliminar.update((_) => true);
     this.idAEliminar = id;
   }
 
   cerrarModalEliminar() {
-    this.modalAbiertoEliminar = false;
+    this.modalAbiertoEliminar.update((_) => false);
     this.idAEliminar = '';
   }
 

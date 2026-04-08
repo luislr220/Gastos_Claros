@@ -12,11 +12,6 @@
   border-radius: 10px;
   background-color: #d8d8d8;
   box-shadow: #000000 2px 3px 8px;
-  transition: transform 0.3s ease;
-}
-
-.gasto-card:hover {
-  transform: scale(1.01);
 }
 
 .gasto-card-titulo {
@@ -81,15 +76,25 @@
 }
 
 .modal-content {
-  background-color: rgb(224, 224, 224);
-  border: 1px solid #000000;
+  background-color: rgb(255, 255, 255);
+  border: none;
   border-radius: 5px;
   padding: 20px;
-  min-width: 300px;
+  min-width: 500px;
   max-width: 90%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   flex-direction: column;
   position: relative;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.9);
+  }
 }
 
 .form-group {
@@ -146,6 +151,11 @@
     gap: 1.5rem;
     text-align: left;
   }
+
+  .modal-content {
+    min-width: 100px;
+    max-width: 90%;
+  }
 }
 
 /* Tablet */
@@ -164,5 +174,10 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     text-align: left;
+  }
+
+  .modal-content {
+    min-width: 500px;
+    max-width: 90%;
   }
 }
