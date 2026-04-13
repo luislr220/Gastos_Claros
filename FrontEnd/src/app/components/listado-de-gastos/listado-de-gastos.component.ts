@@ -52,7 +52,9 @@ export class ListadoDeGastosComponent implements OnInit {
   totalGastado() {
     this.gastosService.getTotalGasto().subscribe({
       next: (response) => {
-        console.log(response);
+        if (response.data === undefined) {
+          return alert(response.mensaje);
+        }
         this.totalGastadoGeneral = response.data.toFixed(2);
       },
       error: (e) => {

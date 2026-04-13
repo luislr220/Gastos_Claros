@@ -1,19 +1,30 @@
-<form [formGroup]="registroGasto" (ngSubmit)="handleSubmit()">
-  <label for="nombre-gasto">Gasto</label>
-  <input
-    type="text"
-    id="nombre-gasto"
-    formControlName="nombre"
-    placeholder="Ingresa el nombre del gasto"
-  />
+<form
+  [formGroup]="registroGasto"
+  (ngSubmit)="handleSubmit()"
+  class="container-registro"
+>
+  <div class="label-input-registro">
+    <label for="nombre-gasto">Gasto</label>
+    <input
+      type="text"
+      id="nombre-gasto"
+      formControlName="nombre"
+      placeholder="Ingresa el nombre del gasto"
+    />
+  </div>
 
-  <label for="monto-gasto">Monto</label>
-  <input
-    type="number"
-    id="monto-gasto"
-    formControlName="monto"
-    placeholder="ingresa el monto de la operación"
-  />
+  <div class="label-input-registro">
+    <label for="monto-gasto">Monto</label>
+    <input
+      type="number"
+      id="monto-gasto"
+      formControlName="monto"
+      placeholder="ingresa el monto de la operación"
+    />
+  </div>
 
-  <button>Registrar</button>
+  <div class="label-input-registro">
+    <br />
+    <button>Registrar</button>
+  </div>
 </form>

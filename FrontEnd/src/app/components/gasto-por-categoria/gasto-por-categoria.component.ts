@@ -24,7 +24,12 @@ export class GastoPorCategoriaComponent implements OnInit {
   gastoPorCategoria() {
     this.gastoService.getGastoPorCategoria().subscribe({
       next: (response: any) => {
-        console.log('Gasto por categoria: ', response.data);
+        /* Aqui solo devolvi null ya que como maneja el mismo mensaje que listado de gastos en la misma vista 
+          Seria redundante tener el mismo mensaje.
+        */
+        if (response.data === undefined) {
+          return;
+        }
         this.gastoCategoria = response.data;
       },
       error: (e: any) => {

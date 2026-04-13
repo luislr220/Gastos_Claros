@@ -1,0 +1,13 @@
+.container-registro {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr auto;
+}
+
+.container-registro button {
+  width: 150px;
+}
+
+.label-input-registro {
+  display: grid;
+}
