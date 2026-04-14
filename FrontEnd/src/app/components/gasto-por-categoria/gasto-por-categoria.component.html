@@ -1,12 +1,5 @@
 <h2>Gasto Por Categoria</h2>
 
-@for (categoria of obtenerLlaves(gastoCategoria); track categoria) {
-  <p>
-    {{ capitaizar(categoria) }} | ${{
-      gastoCategoria[categoria].toFixed(2)
-    }}
-    MXN
-  </p>
-}
-
-<canvas #pieCanvas></canvas>
+<div class="contenedor-canvas">
+  <canvas #pieCanvas></canvas>
+</div>

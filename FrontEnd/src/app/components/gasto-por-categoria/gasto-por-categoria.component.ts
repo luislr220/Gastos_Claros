@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, viewChild } from '@angular/core';
 import { Chart, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
 import { GastosService } from '../../../services/gastos.service';
 import { GastoPorCategoria } from '../../../models/Gasto';
+import { COLORES_POR_CATEGORIA } from '../../../utils/categoria.util';
 
 Chart.register(PieController, ArcElement, Tooltip, Legend);
 
@@ -27,6 +28,7 @@ export class GastoPorCategoriaComponent implements OnInit {
 
     this.gastoService.RefrescarListas.subscribe(() => {
       this.gastoPorCategoria();
+      this.crearChart();
     });
   }
 
@@ -63,21 +65,37 @@ export class GastoPorCategoriaComponent implements OnInit {
 
   crearChart() {
     const elemento = this.canvasRef();
+    const etiquetas = this.nombresGastos;
+
+    const coloresAsignados = etiquetas.map((colores: string) => {
+      return (
+        COLORES_POR_CATEGORIA[colores.toLowerCase()] ||
+        COLORES_POR_CATEGORIA['default']
+      );
+    });
+
+    if (!elemento) return;
+
+    if (this.chart) {
+      this.chart.destroy();
+    }
 
     if (elemento) {
       this.chart = new Chart(elemento.nativeElement, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
-          labels: this.nombresGastos.map((nombre: string) =>
-            this.capitaizar(nombre),
-          ),
+          labels: etiquetas.map((n: string) => this.capitaizar(n)),
           datasets: [
             {
-              label: 'Votos',
+              label: 'Gastos',
               data: this.precioGastos,
-              backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+              backgroundColor: coloresAsignados,
             },
           ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
         },
       });
     }

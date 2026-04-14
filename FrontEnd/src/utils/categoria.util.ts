@@ -1,0 +1,56 @@
+export const DICCIONARIO_CATEGORIAS: Record<string, string> = {
+  netflix: 'streaming',
+  disney: 'streaming',
+  spotify: 'streaming',
+  hbo: 'streaming',
+  youtube: 'streaming',
+  prime: 'streaming',
+  'prime video': 'streaming',
+  crunchyroll: 'streaming',
+  starbucks: 'comida',
+  tacos: 'comida',
+  pizza: 'comida',
+  hamburguesa: 'comida',
+  uber: 'transporte',
+  didi: 'transporte',
+  indriver: 'transporte',
+  gasolina: 'transporte',
+  combi: 'transporte',
+  metro: 'transporte',
+  telcel: 'servicios',
+  movistar: 'servicios',
+  att: 'servicios',
+  cfe: 'servicios',
+  aguakan: 'servicios',
+  internet: 'servicios',
+  izzi: 'servicios',
+  telmex: 'servicios',
+  farmacia: 'salud',
+  doctor: 'salud',
+  dentista: 'salud',
+  medicina: 'salud',
+  gym: 'salud',
+  amazon: 'compras',
+  mercadolibre: 'compras',
+  walmart: 'compras',
+  soriana: 'compras',
+  oxxo: 'compras',
+  chela: 'entretenimiento',
+  cerveza: 'entretenimiento',
+  cine: 'entretenimiento',
+  concierto: 'entretenimiento',
+  antro: 'entretenimiento',
+};
+
+export const COLORES_POR_CATEGORIA: Record<string, string> = {
+  streaming: '#E50914',
+  comida: '#FFB300',
+  transporte: '#4CAF50',
+  salud: '#2196F3',
+  default: '#9E9E9E',
+};
+
+export function obtenerCategoriaDeGasto(gasto: string): string {
+  const nombreLimpio = gasto.toLowerCase().trim();
+  return DICCIONARIO_CATEGORIAS[nombreLimpio];
+}
