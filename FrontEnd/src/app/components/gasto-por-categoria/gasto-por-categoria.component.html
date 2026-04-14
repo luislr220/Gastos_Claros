@@ -2,6 +2,11 @@
 
 @for (categoria of obtenerLlaves(gastoCategoria); track categoria) {
   <p>
-    {{ capitaizar(categoria) }} | ${{ gastoCategoria[categoria].toFixed(2) }} MXN
+    {{ capitaizar(categoria) }} | ${{
+      gastoCategoria[categoria].toFixed(2)
+    }}
+    MXN
   </p>
 }
+
+<canvas #pieCanvas></canvas>

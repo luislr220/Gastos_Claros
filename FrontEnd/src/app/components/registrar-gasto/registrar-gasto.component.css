@@ -11,3 +11,32 @@
 .label-input-registro {
   display: grid;
 }
+
+.label-input-registro label {
+  font-size: large;
+}
+
+.label-input-registro input {
+  border: none;
+  border-bottom: 2px solid #000;
+  border-right: 2px solid #000;
+  border-radius: 0 0 10px 0;
+  padding: 10px;
+  font-size: large;
+}
+
+.label-input-registro button {
+  font-size: large;
+  background-color: #3d9241;
+  border: 1px solid #3d9241;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 700;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.label-input-registro button:hover {
+  background-color: #32c439;
+  border: 1px solid #32c439;
+}
