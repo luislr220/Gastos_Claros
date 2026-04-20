@@ -3,6 +3,7 @@ import { Gasto } from '../../../models/Gasto';
 import { GastosService } from '../../../services/gastos.service';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AlertaService } from '../../../services/alerta.service';
 
 @Component({
   selector: 'app-listado-de-gastos',
@@ -19,7 +20,10 @@ export class ListadoDeGastosComponent implements OnInit {
   gastoAEditar: Gasto | any;
   gastoOriginal: Gasto | any;
 
-  constructor(private readonly gastosService: GastosService) {}
+  constructor(
+    private readonly gastosService: GastosService,
+    private readonly alertaService: AlertaService,
+  ) {}
 
   ngOnInit() {
     console.log('COMPONENTE DE LISTADO DE GASTOS');
@@ -53,7 +57,8 @@ export class ListadoDeGastosComponent implements OnInit {
     this.gastosService.getTotalGasto().subscribe({
       next: (response) => {
         if (response.data === undefined) {
-          return alert(response.mensaje);
+          const mensaje = response.mensaje;
+          return this.alertaService.mostrar(mensaje, 'info');
         }
         this.totalGastadoGeneral = response.data.toFixed(2);
       },
@@ -67,7 +72,7 @@ export class ListadoDeGastosComponent implements OnInit {
     console.log('Se ha eliminado el gasto con ID: ', id);
     this.gastosService.deleteGasto(id).subscribe({
       next: (response) => {
-        alert(response.mensaje);
+        this.alertaService.mostrar(response.mensaje, 'exito');
         this.gastosService.actualizarListas();
       },
       error: (e) => {

@@ -1,0 +1,12 @@
+<div class="alertas">
+  @for (alerta of config(); track alerta.id) {
+    <div
+      class="alerta-item"
+      [class.error]="alerta.tipo === 'error'"
+      [class.exito]="alerta.tipo === 'exito'"
+      [class.info]="alerta.tipo === 'info'"
+    >
+      <span>{{ alerta.mensaje }}</span>
+    </div>
+  }
+</div>

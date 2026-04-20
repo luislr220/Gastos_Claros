@@ -1,0 +1,38 @@
+.alertas {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.alerta-item {
+  padding: 12px 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 200px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.alerta-item.exito{
+    background-color: green;
+}
+
+.alerta-item.info{
+    background-color: yellow;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
