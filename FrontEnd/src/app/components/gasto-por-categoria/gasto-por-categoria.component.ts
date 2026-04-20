@@ -3,6 +3,7 @@ import { Chart, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
 import { GastosService } from '../../../services/gastos.service';
 import { GastoPorCategoria } from '../../../models/Gasto';
 import { COLORES_POR_CATEGORIA } from '../../../utils/categoria.util';
+import { AlertaService } from '../../../services/alerta.service';
 
 Chart.register(PieController, ArcElement, Tooltip, Legend);
 
@@ -19,7 +20,10 @@ export class GastoPorCategoriaComponent implements OnInit {
   nombresGastos: any = [];
   precioGastos: any = [];
 
-  constructor(private readonly gastoService: GastosService) {}
+  constructor(
+    private readonly gastoService: GastosService,
+    private readonly alertaService: AlertaService,
+  ) {}
 
   gastoCategoria: GastoPorCategoria = {};
 
@@ -49,7 +53,7 @@ export class GastoPorCategoriaComponent implements OnInit {
         this.crearChart();
       },
       error: (e: any) => {
-        console.error('Error al obtener el gasto por categoria: ', e);
+        this.alertaService.mostrar(e.e.mensaje, "error")        
       },
     });
   }
