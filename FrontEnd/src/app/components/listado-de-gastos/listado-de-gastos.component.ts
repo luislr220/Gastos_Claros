@@ -64,6 +64,7 @@ export class ListadoDeGastosComponent implements OnInit {
       },
       error: (e) => {
         console.error('Error al obtener el total gastado: ', e);
+        this.alertaService.mostrar(e.e.mensaje, 'error');
       },
     });
   }
@@ -76,7 +77,7 @@ export class ListadoDeGastosComponent implements OnInit {
         this.gastosService.actualizarListas();
       },
       error: (e) => {
-        alert(e.error.error);
+        this.alertaService.mostrar(e.error.error, 'error');
       },
     });
   }
@@ -92,17 +93,17 @@ export class ListadoDeGastosComponent implements OnInit {
     });
 
     if (Object.keys(cambios).length === 0) {
-      alert('No hay cambios que guardar');
+      this.alertaService.mostrar('No hay cambios que guardar');
       return;
     }
 
     this.gastosService.actualizarGasto(idGasto, cambios).subscribe({
       next: (response) => {
-        alert(response.mensaje);
+        this.alertaService.mostrar(response.mensaje, 'exito');
         this.gastosService.actualizarListas();
       },
       error: (e) => {
-        alert(e.error.error);
+        this.alertaService.mostrar(e.error.error, 'error');
       },
     });
   }
