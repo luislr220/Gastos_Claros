@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { GastoRegistro } from '../../../models/Gasto';
 import { GastosService } from '../../../services/gastos.service';
+import { AlertaService } from '../../../services/alerta.service';
 
 @Component({
   selector: 'app-registrar-gasto',
@@ -14,7 +15,10 @@ export class RegistrarGastoComponent {
   nombre: FormControl;
   monto: FormControl;
 
-  constructor(private readonly gastosService: GastosService) {
+  constructor(
+    private readonly gastosService: GastosService,
+    private readonly alertaService: AlertaService,
+  ) {
     this.nombre = new FormControl('');
     this.monto = new FormControl(0);
 
@@ -31,14 +35,14 @@ export class RegistrarGastoComponent {
       this.gastosService.postGasto(data).subscribe({
         next: (response: any) => {
           console.log(response);
-          alert(response.mensaje);
+          this.alertaService.mostrar(response.mensaje, 'exito');
 
           this.gastosService.actualizarListas();
           this.registroGasto.reset();
         },
         error: (err: any) => {
-          console.log(err.error.error);
-          alert(err.error.error);
+          console.log("ERROR",err.error.error);
+          this.alertaService.mostrar(err.error.error, 'error');
         },
       });
     }

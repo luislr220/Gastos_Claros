@@ -18,12 +18,16 @@
   animation: slideIn 0.3s ease-out;
 }
 
-.alerta-item.exito{
-    background-color: green;
+.alerta-item.exito {
+  background-color: green;
 }
 
-.alerta-item.info{
-    background-color: yellow;
+.alerta-item.info {
+  background-color: rgb(31, 120, 194);
+}
+
+.alerta-item.error {
+  background-color: red;
 }
 
 @keyframes slideIn {
